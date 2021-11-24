@@ -1317,7 +1317,7 @@ if (reversed == null) { reversed = false; }
 
 	// Layer_3 copy
 	this.shape_49 = new cjs.Shape();
-	this.shape_49.graphics.f().s("#FF0000").ss(1,1,1,3,true).p("A7BN2ICR7rIPiAAQQ5RtTXB2");
+	this.shape_49.graphics.f().s("#FF0000").ss(1,1,1).p("A7BN2ICR7rIPiAAQQ5RtTXB2");
 	this.shape_49.setTransform(175.275,175.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.shape_49).wait(268));
