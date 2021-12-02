@@ -22,7 +22,7 @@
   }
 </style>
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-<script src="retrofit_2.js?1638359218368"></script>
+<script src="retrofit_2.js?1638446552655"></script>
 <script>
 var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
 function init() {
@@ -31,12 +31,25 @@ function init() {
 	dom_overlay_container = document.getElementById("dom_overlay_container");
 	var comp=AdobeAn.getComposition("4B93EBDA609CD5499832C33DCA53321E");
 	var lib=comp.getLibrary();
-	handleComplete({},comp);
+	var loader = new createjs.LoadQueue(false);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
 }
 function handleComplete(evt,comp) {
 	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
 	var lib=comp.getLibrary();
 	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
 	var preloaderDiv = document.getElementById("_preload_div_");
 	preloaderDiv.style.display = 'none';
 	canvas.style.display = 'block';
@@ -63,6 +76,6 @@ function handleComplete(evt,comp) {
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:550px; height:400px; position: absolute; left: 0px; top: 0px; display: none;">
 		</div>
 	</div>
-    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:400px; width: 550px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=images/_preloader.gif?1638359218369 style='vertical-align: middle; max-height: 100%'/></div>
+    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:400px; width: 550px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src=images/_preloader.gif?1638446552655 style='vertical-align: middle; max-height: 100%'/></div>
 </body>
 </html>
