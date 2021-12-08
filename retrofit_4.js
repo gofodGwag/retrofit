@@ -713,6 +713,14 @@ if (reversed == null) { reversed = false; }
 		if(this.totalFrames == 1) {
 			this.isSingleFrame = true;
 		}
+		// Enable touch events while allowing the touch events to bubble up to the document.
+		
+		createjs.Touch.enable(stage, false, true);
+		
+		// Don't let the stage to automatically prevent default touch events.
+		
+		stage.preventSelection = false;
+		
 		this.graph1.notify.gotoAndStop(0)
 		this.graph1.graphs.gotoAndStop(0)
 		this.graph1.building5.visible = 1;
@@ -1538,7 +1546,7 @@ if (reversed == null) { reversed = false; }
 	this.shape_189.setTransform(290.6,124.775);
 
 	this.shape_190 = new cjs.Shape();
-	this.shape_190.graphics.f().s("#003E74").ss(2,1,1).p("EAhZAKxIABAAQABAAABAAIAEAAIAFAAEAhwAKxIABABIgnAdEAhKAKUIAlAcACbqmIAfgoIAdAnAicKxIACABIgoAdAizKxIABAAQABAAABAAIAEAAIAFAAAjCKUIAlAcADGKxIgMAAIAA1/EghSgLOIAdAnEghwgKmIAegoEghFAKxIgNAAIAA1/Ai3KxI97AAEAhVAKxI97AA");
+	this.shape_190.graphics.f().s("#003E74").ss(2,1,1).p("EAhZAKxIABAAQABAAABAAIAEAAIAFAAEAhwAKxIABABIgnAdEAhKAKUIAlAcAC6rOIAdAnACbqmIAfgoAicKxIACABIgoAdAizKxIABAAQABAAABAAIAEAAIAFAAAjCKUIAlAcADGKxIgMAAIAA1/EghwgKmIAegoIAdAnEghFAKxIgNAAIAA1/Ai3KxI97AAEAhVAKxI97AA");
 	this.shape_190.setTransform(284.975,109.2);
 
 	this.shape_191 = new cjs.Shape();
@@ -1560,7 +1568,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/retrofit_4_atlas_1.png?1638948538471", id:"retrofit_4_atlas_1"}
+		{src:"images/retrofit_4_atlas_1.png?1638957235904", id:"retrofit_4_atlas_1"}
 	],
 	preloads: []
 };
